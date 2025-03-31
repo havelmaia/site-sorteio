@@ -1,29 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="pt_BR">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale-1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <title>Video</title>
+    <link rel="icon" href="fav.png" type="image/x-icon">
+    <title>Sorteio</title>
 </head>
+
 
 <body>
     <header>
-        <img src="dadin.gif" alt="Imagem-dado">
+        <img src="dado.png" alt="Imagem-dado">
         <h1>Sorteios</h1>
         <h2>Adicione os números abaixo para o sorteio</h2>
     </header>
     <main>
-        <input class="min" type="number" placeholder="Inicial">
-        <input class="max" type="number" placeholder="Final">
+        <input class="min" type="number" placeholder="Inicial" onFocus="this.classList.add('fade-placeholder')" onBlur="this.classList.remove('fade-placeholder')">
+        <input class="max" type="number" placeholder="Final" onFocus="this.classList.add('fade-placeholder')" onBlur="this.classList.remove('fade-placeholder')">
     </main>
     <div class="button">
-        <button class="button-sortear" disabled>Sortear</button>
+        <button class="button-sortear" disabled style="font-size: 25px;">Sortear</button>
     </div>
     <div class="resultado"></div>
 </body>
 <script src="script.js"></script>
+
 
 </html>

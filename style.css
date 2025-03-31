@@ -3,10 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 
+
     body {
         width: 100vw;
         height: 100vh;
-        background: url(hisalana.jpg) no-repeat center/cover;
+        background: linear-gradient(to bottom, #000000, #8c0de7);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -14,11 +15,13 @@
         font-family: 'Poppins', sans-serif;
     }
 
+
     header img {
         display: block;
         margin: 0 auto 30px;
         width: 100px;
     }
+
 
     header h1 {
         color: #fff;
@@ -27,6 +30,7 @@
         text-align: center;
         margin-bottom: 40px;
     }
+
 
     header h2 {
         color: #fff;
@@ -37,6 +41,7 @@
         margin-bottom: 15px;
     }
 }
+
 
 main {
     & input {
@@ -52,6 +57,7 @@ main {
         font-family: 'Poppins', sans-serif !important;
     }
 
+
    
     & input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
@@ -60,7 +66,9 @@ main {
     }
 }
 
+
 .button {
+
 
     & button {  
     display: block;
@@ -78,28 +86,32 @@ main {
     }
 }
 
+
 & button:hover {
     opacity: .7;
     transition: .38;
 }
+
 
 & button:active {
     opacity: .4;
     transition: .3s;
 }
 
+
 & button:disabled {
     background-color:gray;
     cursor: not-allowed;
     opacity: .5;
 }
-.resultado { 
+.resultado {
     font-size: 19px;
     font-weight: bold;
     color: #fff;  
     text-align: center;
     margin-bottom: 30px;
 }
+
 
 strong {
     display: inline-flex;
@@ -109,7 +121,7 @@ strong {
     font-weight: 700;  
     border: 2px solid #fff;
     border-radius: 50%;
-    color: #d0ff00;
+    color: #d7ff24;
     align-items: center;
     justify-content: center;
     margin: 5px;
@@ -117,3 +129,10 @@ strong {
     aspect-ratio: 1 / 1;
     white-space: nowrap;
 }
+
+.fade-placeholder::placeholder {
+    opacity: 0.2;
+    transition: opacity 0.3s ease; /* Para uma transição suave */
+}
+
+
