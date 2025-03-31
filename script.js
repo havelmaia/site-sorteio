@@ -1,65 +1,68 @@
-const sorteio = document.querySelector('.button-sortear');
-const minInput = document.querySelector('.min');
-const maxInput = document.querySelector('.max');
-const resultadoDiv =document.querySelector('.resultado');
-
-function verificarInputs() {
-    const minVal = minInput.value.trim();
-    const maxVal = maxInput.value.trim();
-
-    sorteio.disabled = minVal === "" || maxVal === "";
-}
-
-function selecionarTipo(tipo) {
-    document.getElementById("tela-inicial").style.display = "none";
-    document.getElementById("tela-sorteio").style.display = "block";
-
-    if (tipo === "numeros") {
-        document.getElementById("sorteio-numeros").style.display = "block";
-        document.getElementById("sorteio-palavras").style.display = "none";
-        document.getElementById("titulo-sorteio").innerText = "Adicione os números abaixo para o sorteio";
-    } else {
-        document.getElementById("sorteio-numeros").style.display = "none";
-        document.getElementById("sorteio-palavras").style.display = "block";
-        document.getElementById("titulo-sorteio").innerText = "Digite as palavras para o sorteio";
-    }
-
-    document.querySelector(".button-sortear").disabled = false;
-}
-
-function sortear() {
-    let resultado = document.querySelector(".resultado");
-    resultado.innerHTML = "";
-
-    if (document.getElementById("sorteio-numeros").style.display === "block") {
-        let min = parseInt(document.querySelector(".min").value);
-        let max = parseInt(document.querySelector(".max").value);
-
-        if (!isNaN(min) && !isNaN(max) && min < max) {
-            let numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
-            resultado.innerHTML = `<h2>Resultado: ${numeroSorteado}</h2>`;
+document.addEventListener("DOMContentLoaded", function() {
+    // Elementos da DOM
+    const telaInicial = document.getElementById("tela-inicial");
+    const telaSorteio = document.getElementById("tela-sorteio");
+    const sorteioNumeros = document.getElementById("sorteio-numeros");
+    const sorteioPalavras = document.getElementById("sorteio-palavras");
+    const btnSortear = document.getElementById("btn-sortear");
+    const resultadoDiv = document.getElementById("resultado");
+    const listaPalavras = document.getElementById("lista-palavras");
+    
+    // Função para selecionar o tipo de sorteio
+    window.selecionarTipo = function(tipo) {
+        telaInicial.style.display = "none";
+        telaSorteio.style.display = "block";
+        
+        if (tipo === "numeros") {
+            sorteioNumeros.style.display = "block";
+            sorteioPalavras.style.display = "none";
+            document.getElementById("titulo-sorteio").textContent = "Sorteio de Números";
         } else {
-            resultado.innerHTML = `<h2>Por favor, insira números válidos.</h2>`;
+            sorteioNumeros.style.display = "none";
+            sorteioPalavras.style.display = "block";
+            document.getElementById("titulo-sorteio").textContent = "Sorteio de Palavras";
         }
-    } else {
-        let palavras = document.getElementById("lista-palavras").value.split(",");
-        palavras = palavras.map(p => p.trim()).filter(p => p !== "");
-
-        if (palavras.length > 0) {
-            let palavraSorteada = palavras[Math.floor(Math.random() * palavras.length)];
-            resultado.innerHTML = `<h2>Resultado: ${palavraSorteada}</h2>`;
+    };
+    
+    // Função para voltar à tela inicial
+    window.voltarTelaInicial = function() {
+        telaSorteio.style.display = "none";
+        telaInicial.style.display = "block";
+        resultadoDiv.innerHTML = "";
+    };
+    
+    // Validação dos inputs
+    function validarInputs() {
+        if (sorteioNumeros.style.display === "block") {
+            const min = parseInt(document.getElementById("min").value);
+            const max = parseInt(document.getElementById("max").value);
+            btnSortear.disabled = isNaN(min) || isNaN(max) || min >= max;
         } else {
-            resultado.innerHTML = `<h2>Por favor, insira pelo menos uma palavra.</h2>`;
+            const palavras = listaPalavras.value.split(",").filter(p => p.trim() !== "");
+            btnSortear.disabled = palavras.length < 1;
         }
     }
-}
-
-function voltarTelaInicial() {
-    document.getElementById("tela-sorteio").style.display = "none";
-    document.getElementById("tela-inicial").style.display = "flex";
-    document.querySelector(".resultado").innerHTML = "";
-}
-
-minInput.addEventListener("input",verificarInputs);
-maxInput.addEventListener("input",verificarInputs);
-sorteio.addEventListener("click", sortear);
+    
+    // Event listeners para validação
+    document.getElementById("min").addEventListener("input", validarInputs);
+    document.getElementById("max").addEventListener("input", validarInputs);
+    listaPalavras.addEventListener("input", validarInputs);
+    
+    // Função principal de sorteio
+    window.sortear = function() {
+        resultadoDiv.innerHTML = "";
+        
+        if (sorteioNumeros.style.display === "block") {
+            const min = parseInt(document.getElementById("min").value);
+            const max = parseInt(document.getElementById("max").value);
+            const resultado = Math.floor(Math.random() * (max - min + 1)) + min;
+            resultadoDiv.innerHTML = `<p>Número sorteado: <strong>${resultado}</strong></p>`;
+        } else {
+            const palavras = listaPalavras.value.split(",")
+                          .map(p => p.trim())
+                          .filter(p => p !== "");
+            const sorteada = palavras[Math.floor(Math.random() * palavras.length)];
+            resultadoDiv.innerHTML = `<p>Palavra sorteada: <strong>${sorteada}</strong></p>`;
+        }
+    };
+});

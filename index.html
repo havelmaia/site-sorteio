@@ -1,52 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="pt_BR">
-
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="icon" href="fav.png" type="image/x-icon">
-    <title>Sorteio</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Sorteio Premium</title>
 </head>
-
-
 <body>
-    <div id="tela-inicial">
-        <h1>Escolha o tipo de sorteio</h1>
-        <button onclick="selecionarTipo('numeros')">Sorteio de Números</button>
-        <button onclick="selecionarTipo('palavras')">Sorteio de Palavras</button>
-    </div>
-
-    <div id="tela-sorteio" style="display: none;">
-        <header>
-            <img src="images/dado.gif" alt="Imagem-dado">
-            <h1>Sorteio</h1>
-            <h2 id="titulo-sorteio">Adicione os números abaixo para o sorteio</h2>
-        </header>
-
-        <main id="sorteio-numeros">
-            <input class="min" type="number" placeholder="Inicial">
-            <input class="max" type="number" placeholder="Final">
-        </main>
-
-        <main id="sorteio-palavras" style="display: none;">
-            <textarea id="lista-palavras" placeholder="Digite as palavras separadas por vírgula."></textarea>
-        </main>
-
-        <div class="button">
-            <button class="button-sortear" onclick="sortear()" disabled>Sortear</button>
+    <body>
+        <img src="image.png" alt="Logo do Sorteio" class="logo-sorteio">
+        <div class="container">
+    <div class="container">
+        <!-- Tela Inicial -->
+        <div id="tela-inicial">
+            <h1>Escolha o tipo de sorteio</h1>
+            <div class="button-group">
+                <button onclick="selecionarTipo('numeros')">Sorteio de Números</button>
+                <button onclick="selecionarTipo('palavras')">Sorteio de Palavras</button>
+            </div>
         </div>
 
-        <div class="resultado"></div>
-        
-        <button id="btn-voltar" onclick="voltarTelaInicial()">Início</button>
+        <!-- Tela Sorteio -->
+        <div id="tela-sorteio" style="display: none;">
+            <h2 id="titulo-sorteio">Adicione os valores para o sorteio</h2>
+            
+            <div id="sorteio-numeros">
+                <input id="min" type="number" placeholder="Número inicial">
+                <input id="max" type="number" placeholder="Número final">
+            </div>
+            
+            <div id="sorteio-palavras" style="display: none;">
+                <textarea id="lista-palavras" placeholder="Digite palavras separadas por vírgula"></textarea>
+            </div>
+
+            <button id="btn-sortear" onclick="sortear()" disabled>Sortear</button>
+            <button onclick="voltarTelaInicial()">Voltar</button>
+            
+            <div id="resultado"></div>
+        </div>
     </div>
-
+    
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
-
-
 </html>
