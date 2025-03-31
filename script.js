@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Elementos da DOM
     const telaInicial = document.getElementById("tela-inicial");
     const telaSorteio = document.getElementById("tela-sorteio");
     const sorteioNumeros = document.getElementById("sorteio-numeros");
@@ -8,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const resultadoDiv = document.getElementById("resultado");
     const listaPalavras = document.getElementById("lista-palavras");
     
-    // Função para selecionar o tipo de sorteio
     window.selecionarTipo = function(tipo) {
         telaInicial.style.display = "none";
         telaSorteio.style.display = "block";
@@ -24,14 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
     
-    // Função para voltar à tela inicial
     window.voltarTelaInicial = function() {
         telaSorteio.style.display = "none";
         telaInicial.style.display = "block";
         resultadoDiv.innerHTML = "";
     };
     
-    // Validação dos inputs
     function validarInputs() {
         if (sorteioNumeros.style.display === "block") {
             const min = parseInt(document.getElementById("min").value);
@@ -43,13 +39,31 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
-    // Event listeners para validação
     document.getElementById("min").addEventListener("input", validarInputs);
     document.getElementById("max").addEventListener("input", validarInputs);
     listaPalavras.addEventListener("input", validarInputs);
     
-    // Função principal de sorteio
+    function dispararConfetes() {
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#d7ff24', '#ffffff', '#8c0de7']
+        });
+        
+        setTimeout(() => {
+            confetti({
+                particleCount: 100,
+                spread: 60,
+                origin: { y: 0.5 },
+                colors: ['#d7ff24', '#8c0de7']
+            });
+        }, 300);
+    }
+    
     window.sortear = function() {
+        dispararConfetes();
+        
         resultadoDiv.innerHTML = "";
         
         if (sorteioNumeros.style.display === "block") {
@@ -64,5 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const sorteada = palavras[Math.floor(Math.random() * palavras.length)];
             resultadoDiv.innerHTML = `<p>Palavra sorteada: <strong>${sorteada}</strong></p>`;
         }
+        
+        setTimeout(dispararConfetes, 500);
     };
 });

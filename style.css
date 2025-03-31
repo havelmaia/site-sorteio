@@ -6,8 +6,6 @@
     --branco: #ffffff;
     --sombra: rgba(0, 0, 0, 0.3);
     --transparente: rgba(255, 255, 255, 0.1);
-    --espacamento: 1.5rem;
-    --espacamento-pequeno: 1rem;
 }
 
 * {
@@ -26,83 +24,54 @@ body {
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     color: var(--branco);
-    padding: var(--espacamento);
+    padding: 20px;
     overflow-x: hidden;
 }
 
-/* Container da Logo */
-.logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0.5rem; /* Reduzido de 1.5rem para 0.5rem */
-    margin-top: -1rem; /* Adicionado para subir mais */
-    animation: float 4s ease-in-out infinite;
-}
-
 .logo-sorteio {
-    width: 140px;
-    height: 140px;
-    object-fit: contain;
-    filter: 
-        drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))
-        brightness(1.1);
-    transition: transform 0.3s ease;
+    display: block;
+    width: 120px;
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-}
-
-/* Container Principal */
 .container {
     background: var(--transparente);
     backdrop-filter: blur(10px);
-    padding: var(--espacamento);
+    padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 32px var(--sombra);
     width: 100%;
     max-width: 420px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    animation: fadeIn 0.6s ease-out;
-    position: relative;
-    z-index: 2;
-    margin-top: 3rem;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Títulos */
 h1, h2 {
     font-weight: 700;
-    margin-bottom: var(--espacamento);
+    margin-bottom: 1.5rem;
+    text-align: center;
     text-shadow: 0 2px 4px var(--sombra);
 }
 
 h1 {
-    text-align: center;
     font-size: 2rem;
     background: linear-gradient(to right, var(--branco), var(--destaque));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-bottom: calc(var(--espacamento) * 1.5);
 }
 
-/* Inputs */
 .input-group {
     display: flex;
-    gap: var(--espacamento-pequeno);
-    margin: var(--espacamento) 0;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 input, textarea {
     width: 100%;
-    padding: 14px 16px;
-    margin: 0.75rem 0;
+    padding: 12px 15px;
+    margin: 0.5rem 0;
     border-radius: 8px;
     border: 2px solid transparent;
     font-size: 1rem;
@@ -119,20 +88,18 @@ input:focus, textarea:focus {
 #lista-palavras {
     min-height: 120px;
     resize: vertical;
-    margin: var(--espacamento-pequeno) 0 var(--espacamento) 0;
+    margin-bottom: 1.5rem;
 }
 
-/* Botões */
 .button-group {
     display: flex;
     flex-direction: column;
-    gap: var(--espacamento-pequeno);
-    margin-top: var(--espacamento);
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 button {
-    padding: 14px 24px;
-    margin: 0.5rem 0;
+    padding: 12px 24px;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 8px;
@@ -147,8 +114,8 @@ button {
 }
 
 #btn-sortear:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(215, 255, 36, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(215, 255, 36, 0.4);
 }
 
 #btn-sortear:disabled {
@@ -165,13 +132,12 @@ button {
 
 .btn-voltar:hover {
     background-color: #e60000;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
-/* Resultado */
 #resultado {
-    margin: var(--espacamento) 0;
-    padding: var(--espacamento-pequeno);
+    margin: 1.5rem 0;
+    padding: 1rem;
     font-size: 1.25rem;
     min-height: 100px;
     display: flex;
@@ -180,10 +146,6 @@ button {
     justify-content: center;
     background: rgba(0, 0, 0, 0.15);
     border-radius: 12px;
-}
-
-#resultado p {
-    margin-bottom: var(--espacamento-pequeno);
 }
 
 #resultado strong {
@@ -197,7 +159,7 @@ button {
     background: var(--transparente);
     border: 2px solid var(--destaque);
     border-radius: 50%;
-    margin: var(--espacamento-pequeno) 0;
+    margin-top: 1rem;
     animation: pulse 2s infinite;
 }
 
@@ -207,27 +169,13 @@ button {
     100% { transform: scale(1); }
 }
 
-/* Responsividade */
 @media (max-width: 480px) {
-    :root {
-        --espacamento: 1.25rem;
-        --espacamento-pequeno: 0.75rem;
-    }
-    
-    .logo-sorteio {
-        width: 100px;
-        height: 100px;
-        
-    }
-    
     .container {
-        padding: var(--espacamento);
-        margin-top: -1rem;
+        padding: 1.5rem;
     }
     
     h1 {
         font-size: 1.6rem;
-        margin-bottom: var(--espacamento);
     }
     
     .input-group {
